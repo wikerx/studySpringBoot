@@ -1,0 +1,8 @@
+
+server:
+#服务器端口
+  port: 8080
+  servlet:
+#  项目名称
+    context-path: /dp
+#    项目访问路径：localhost:8080/dp

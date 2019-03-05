@@ -1,0 +1,10 @@
+#配置开发者模式  读取格式 application-{profile}.yml/properties
+spring:
+  profiles:
+#  开发：dev     测试：sit     线上：online
+    active: dev
+
+pro:
+    name: Mr-xue
+    age: 25
+    company: FTP
