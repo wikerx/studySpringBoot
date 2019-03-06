@@ -1,4 +1,6 @@
 ### SpringBoot study_03：玩转数据库配置
+	注意最好不要使用默认的mysql，jar自己引入MySQL的jar
+
  - 1.数据库使用MySQL作为模板，其他数据也是一样的
  - 2.数据连接方式使用JDBCTemplate（SpringBoot的标准配置），如果想使用阿里数据源主从数据库配置的可以下载我的demo，<a href="https://download.csdn.net/download/qq_16393511/10962594">csdn下载</a>或者关注我的Git,因为很多项目不开源，请先加好友<a href="https://github.com/18772101110?tab=repositories">查看</a>
  - 3.测试案例，暂不考虑安全性能。

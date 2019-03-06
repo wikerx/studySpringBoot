@@ -1,0 +1,10 @@
+# 开发模式
+spring:
+  profiles:
+    active: dev
+#    端口
+server:
+  port: 8080
+#  项目名称
+  servlet:
+    context-path: /dp
