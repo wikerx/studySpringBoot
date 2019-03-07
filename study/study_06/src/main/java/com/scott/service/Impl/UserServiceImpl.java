@@ -5,6 +5,9 @@ import com.scott.mapper.UserMapper;
 import com.scott.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 
@@ -57,4 +60,38 @@ public class UserServiceImpl implements UserService{
     public int deleteUser(int id){
         return userMapper.deleteByPrimaryKey(id);
     }
+
+
+    /*非事物尝试*/
+    public int sumValueNo()throws RuntimeException{
+        method1();
+        User user = new User();
+        user.setName("scott2");
+        user.setId(33);
+        userMapper.updateByPrimaryKeySelective(user);
+        int i=1/0;
+        return 0;
+    }
+
+    /*事物尝试*/
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public int sumValueYes()throws RuntimeException{
+        method1();
+        User user = new User();
+        user.setName("scott2");
+        user.setId(33);
+        userMapper.updateByPrimaryKeySelective(user);
+        int i=1/0;
+        return 1;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void method1() {
+        User user = new User();
+        user.setName("scott1");
+        user.setId(33);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+
 }

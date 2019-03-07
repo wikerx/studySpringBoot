@@ -26,4 +26,11 @@ public interface UserService {
 
     /*删除用户信息*/
     int deleteUser(int id);
+
+    /*非事物尝试*/
+    int sumValueNo() throws Exception;
+
+    /*事物尝试*/
+    int sumValueYes() throws Exception;
+
 }

@@ -3,6 +3,8 @@ package com.scott.controller;
 import com.scott.entity.User;
 import com.scott.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -81,6 +83,20 @@ public class TestController {
         }
     }
 
+    /*非事物尝试*/
+    @RequestMapping(value = "/sumValueNo",method = RequestMethod.GET)
+    public int sumValueNo()throws Exception{
+        int num1 = 2;
+        int num2 = 2;
+        return userService.sumValueNo();
+    }
 
-
+    /*事物尝试*/
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @RequestMapping(value = "/sumValueYes",method = RequestMethod.GET)
+    public int sumValueYes()throws Exception{
+        int num1 = 2;
+        int num2 = 2;
+        return userService.sumValueYes();
+    }
 }
