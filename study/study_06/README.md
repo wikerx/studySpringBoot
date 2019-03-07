@@ -40,8 +40,11 @@
 	2.调用接口:http://localhost:8080/dp/sumValueNo  可以看到数据库中 id 为 33 的用户姓名改为 scott2
 	还原数据再次调用下面的接口
 	调用接口:http://localhost:8080/dp/sumValueYes 可以看到数据库中 id 为 33 的用户姓名未改变
-3.<b style="color:red;">MySQL数据库的数据库引擎必须为InnoDB，否则无效，因为事物需要开启</b>
+	3.MySQL数据库的数据库引擎必须为InnoDB，否则无效，因为事物需要开启
 	Navicat的修改方式，表-设计表-选项-引擎-InnoDB
+	4.原理：未开启事务-method1执行修改，将数据库中的数据修改为 name=scott1,继续执行下一步再将name改为scott2，之后抛出异常，中断
+		   开启事物-method1执行修改，将数据库中的数据修改为 name=scott1,继续执行下一步再将name改为scott2，之后抛出异常，遇到异常，事物立马回滚，将之前更新的数据撤销，即数据name压根就没有修改
+
 
 
 	Spring Transactional一直是RD的事务神器，但是如果用不好，反会伤了自己。下面总结@Transactional经常遇到的几个场景:
